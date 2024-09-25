@@ -37,7 +37,9 @@ if [[ -f "/etc/os-release" ]]; then
   esac
 fi
 echo "     Install oh-my-zsh..."
-curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+if [[ -z "${ZSH}" ]]; then
+  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+fi
 echo "     Install zsh plugins..."
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
@@ -46,6 +48,7 @@ sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting z)
 ## ╔══════════════════════════════════╗
 ## ║   Install and setup starship     ║
 ## ╚══════════════════════════════════╝
+echo "[2]. Begin starship installation and setup"
 curl -sS https://starship.rs/install.sh | sh
 echo eval "$(starship init zsh)" >> "$HOME"/.zshrc
 source "$HOME"/.zshrc
