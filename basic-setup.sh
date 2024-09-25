@@ -41,10 +41,20 @@ if [[ -z "${ZSH}" ]]; then
   curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 fi
 echo "     Install zsh plugins..."
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
-git clone https://github.com/agkozak/zsh-z "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-z
-sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting z)' "$HOME"/.zshrc
+ZSH_SYNTAX_HIGHLIGHTING="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-syntax-highlighting
+ZSH_AUTOSUGGESTIONS="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
+ZSH_Z="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-z
+
+if [[ ! -d "$ZSH_SYNTAX_HIGHLIGHTING" ]]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_SYNTAX_HIGHLIGHTING"
+fi
+if [[ ! -d "$ZSH_AUTOSUGGESTIONS" ]]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_AUTOSUGGESTIONS"
+fi
+if [[ ! -d "$ZSH_Z" ]]; then
+  git clone https://github.com/agkozak/zsh-z "$ZSH_Z"
+fi
+sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting z)/g' "$HOME"/.zshrc
 ## ╔══════════════════════════════════╗
 ## ║   Install and setup starship     ║
 ## ╚══════════════════════════════════╝
