@@ -59,6 +59,6 @@ sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting z)
 ## ║   Install and setup starship     ║
 ## ╚══════════════════════════════════╝
 echo "[2]. Begin starship installation and setup"
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sudo sh
 echo eval "$(starship init zsh)" >> "$HOME"/.zshrc
 source "$HOME"/.zshrc
