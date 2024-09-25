@@ -54,7 +54,7 @@ fi
 if [[ ! -d "$ZSH_Z" ]]; then
   git clone https://github.com/agkozak/zsh-z "$ZSH_Z"
 fi
-sed 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting z)/g' "$HOME"/.zshrc
+sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting z)/g' "$HOME"/.zshrc
 ## ╔══════════════════════════════════╗
 ## ║   Install and setup starship     ║
 ## ╚══════════════════════════════════╝
